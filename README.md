@@ -1,56 +1,57 @@
-# Documentación de la API QuickbetMovies
+## Iniciar la Aplicación
 
-## Introducción
+### Con NestJS
 
-Proporcione una breve descripción de su API. Explique su propósito y los problemas que soluciona.
+Para iniciar la aplicación localmente utilizando NestJS, sigue estos pasos:
 
-## Tecnologías Usadas
+1. **Instalar Dependencias**: Asegúrate de tener todas las dependencias necesarias instaladas. Corre el siguiente comando en la raíz del proyecto:
 
-A continuación, se presentan las tecnologías utilizadas en el desarrollo de esta API, junto con enlaces a su documentación oficial:
+    ```bash
+    npm install
+    ```
 
-- **[Node.js](https://nodejs.org/en/docs/)**: Entorno de ejecución para JavaScript en el servidor, que permite construir aplicaciones escalables y de alto rendimiento.
-- **[Docker](https://docs.docker.com/)**: Plataforma que permite empaquetar aplicaciones y sus dependencias en contenedores, facilitando el despliegue y la gestión de entornos.
-- **[NestJS](https://docs.nestjs.com/)**: Framework para desarrollar aplicaciones del lado del servidor utilizando TypeScript y Node.js, con un enfoque modular y basado en componentes.
-- **[TypeScript](https://www.typescriptlang.org/docs/)**: Lenguaje de programación que extiende JavaScript con tipos estáticos, lo que ayuda a detectar errores en tiempo de compilación y mejorar la calidad del código.
-- **[MongoDB](https://www.mongodb.com/docs/manual/)**: Base de datos NoSQL orientada a documentos, que permite almacenar datos en formato JSON y realizar consultas flexibles.
+2. **Iniciar el Servidor de Desarrollo**: Para iniciar el servidor de desarrollo de NestJS, utiliza el siguiente comando:
 
+    ```bash
+    npm run start:dev
+    ```
 
-**Ejemplo:**
+    Esto iniciará la aplicación en modo de desarrollo y estará disponible en [http://localhost:3000](http://localhost:3000).
 
-Base URL: `http://http://localhost:3000/v1`
+3. **Construir y Ejecutar en Producción**:
 
-## URL Base
+    - **Construir el Proyecto**: Ejecuta el comando para construir la aplicación para producción:
 
-Especifique la URL base para los puntos finales de la API.
+      ```bash
+      npm run build
+      ```
 
-## Autenticación y Autorización
+    - **Iniciar la Aplicación en Producción**: Una vez construido, puedes iniciar el servidor de producción con:
 
-### Autenticación
+      ```bash
+      npm run start:prod
+      ```
 
-La API utiliza JSON Web Tokens (JWT) para la autenticación. Todos los puntos finales requieren un token JWT válido en el encabezado `Authorization`.
+    La aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
 
-- **Encabezado:** `Authorization: Bearer <token>`
-- **Obtención del Token:** El token JWT se obtiene al iniciar sesión en [nuestro sitio web](https://example.com/login). Debe enviar sus credenciales para recibir un token.
+### Con Docker Compose
 
-### Autorización
+Para iniciar la aplicación utilizando Docker Compose, sigue estos pasos:
 
-Dependiendo del endpoint, el token JWT puede necesitar permisos específicos. Asegúrese de que el token esté asociado con los permisos requeridos para acceder a ciertos recursos.
+1. **Asegúrate de Tener Docker y Docker Compose Instalados**: Verifica que Docker y Docker Compose estén instalados en tu máquina.
 
-## Puntos Finales
+2. **Construir y Levantar Contenedores**: Navega a la raíz del proyecto y corre el siguiente comando para construir las imágenes y levantar los contenedores:
 
-### 1. **Obtener Usuarios**
+    ```bash
+    docker-compose up --build
+    ```
 
-- **Endpoint:** `/users`
-- **Método:** `GET`
-- **Descripción:** Recupera una lista de usuarios.
-- **Encabezado de Solicitud:**
-  ```http
-  Authorization: Bearer TU_TOKEN_JWT
+    Esto construirá las imágenes según el `Dockerfile` y levantará los contenedores definidos en el archivo `docker-compose.yml`.
 
-- **400 Bad Request:** La solicitud está mal formada o falta algún parámetro requerido.
-- **401 Unauthorized:** La clave API está ausente o es inválida.
-- **404 Not Found:** El recurso solicitado no existe.
-- **500 Internal Server Error:** Ocurrió un error inesperado en el servidor.
+3. **Verificar la Aplicación**: Una vez que los contenedores estén en ejecución, la aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
 
-Para soporte, por favor contáctenos en [stiven23ospina@gmail.com](mailto:stiven23ospina@gmail.com).
+4. **Parar los Contenedores**: Para detener y eliminar los contenedores, ejecuta:
 
+    ```bash
+    docker-compose down
+    ```
